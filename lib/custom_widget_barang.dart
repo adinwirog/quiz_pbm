@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 
-class CustomWidgetBarang extends StatefulWidget {
+class Barang {
   String namaBarang;
   int hargaBarang;
   int jumlahBarang;
-
-  CustomWidgetBarang(
+  Barang(
       {required this.namaBarang,
       required this.hargaBarang,
       required this.jumlahBarang});
+}
+
+class CustomWidgetBarang extends StatefulWidget {
+  Barang barang;
+
+  CustomWidgetBarang({
+    required this.barang,
+  });
 
   @override
   _CustomWidgetBarangState createState() => _CustomWidgetBarangState();
 }
 
 class _CustomWidgetBarangState extends State<CustomWidgetBarang> {
-  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,7 +62,7 @@ class _CustomWidgetBarangState extends State<CustomWidgetBarang> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.namaBarang,
+                        widget.barang.namaBarang,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22,
@@ -66,7 +72,7 @@ class _CustomWidgetBarangState extends State<CustomWidgetBarang> {
                         height: 5,
                       ),
                       Text(
-                        "Harga Satuan Rp. ${widget.hargaBarang}",
+                        "Harga Satuan Rp. ${widget.barang.hargaBarang}",
                         style: TextStyle(
                           fontSize: 18,
                         ),
@@ -75,7 +81,7 @@ class _CustomWidgetBarangState extends State<CustomWidgetBarang> {
                         height: 3,
                       ),
                       Text(
-                        "Jumlah Yang dibeli ${widget.jumlahBarang}",
+                        "Jumlah Yang dibeli ${widget.barang.jumlahBarang}",
                         style: TextStyle(
                           fontSize: 18,
                         ),

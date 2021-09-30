@@ -25,8 +25,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<Barang> barang = [
+    Barang(namaBarang: "Poci", hargaBarang: 11000, jumlahBarang: 2),
+    Barang(namaBarang: "Gelas", hargaBarang: 3000, jumlahBarang: 2),
+    Barang(namaBarang: "Piring", hargaBarang: 5000, jumlahBarang: 2),
+  ];
+  int total = 0;
+
+  void setTotal (List<Barang> barang) {
+    var initTotal = 0;
+    for (var i = 0; i < barang.length; i++) {
+      initTotal += (barang[i].hargaBarang * barang[i].jumlahBarang);
+    }
+    total = initTotal;
+  }
+
   @override
   Widget build(BuildContext context) {
+    setTotal(barang);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -38,24 +54,11 @@ class _HomeState extends State<Home> {
           style: TextStyle(fontSize: 23),
         ),
       ),
-      body: ListView(
-        children: [
-          CustomWidgetBarang(
-            namaBarang: "Termos",
-            hargaBarang: 15000,
-            jumlahBarang: 2,
-          ),
-          CustomWidgetBarang(
-            namaBarang: "Gelas",
-            hargaBarang: 3000,
-            jumlahBarang: 2,
-          ),
-          CustomWidgetBarang(
-            namaBarang: "Piring",
-            hargaBarang: 7000,
-            jumlahBarang: 2,
-          ),
-        ],
+      body: ListView.builder(
+        itemCount: barang.length,
+        itemBuilder: (BuildContext context, int index) {
+          return CustomWidgetBarang(barang: barang[index]);
+        },
       ),
       bottomNavigationBar: BottomAppBar(
         child: Container(
@@ -76,7 +79,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 Text(
-                  "RP. XXX",
+                  "Rp. $total",
                   style: TextStyle(
                     fontSize: 25,
                     color: Colors.white,
