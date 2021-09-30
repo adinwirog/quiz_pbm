@@ -40,9 +40,21 @@ class _HomeState extends State<Home> {
       ),
       body: ListView(
         children: [
-          CustomWidgetBarang(),
-          CustomWidgetBarang(),
-          CustomWidgetBarang(),
+          CustomWidgetBarang(
+            namaBarang: "Termos",
+            hargaBarang: 15000,
+            jumlahBarang: 2,
+          ),
+          CustomWidgetBarang(
+            namaBarang: "Gelas",
+            hargaBarang: 3000,
+            jumlahBarang: 2,
+          ),
+          CustomWidgetBarang(
+            namaBarang: "Piring",
+            hargaBarang: 7000,
+            jumlahBarang: 2,
+          ),
         ],
       ),
       bottomNavigationBar: BottomAppBar(

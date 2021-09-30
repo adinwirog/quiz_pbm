@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 
-class CustomWidgetBarang extends StatelessWidget {
-  const CustomWidgetBarang({Key? key}) : super(key: key);
+class CustomWidgetBarang extends StatefulWidget {
+  String namaBarang;
+  int hargaBarang;
+  int jumlahBarang;
 
+  CustomWidgetBarang(
+      {required this.namaBarang,
+      required this.hargaBarang,
+      required this.jumlahBarang});
+
+  @override
+  _CustomWidgetBarangState createState() => _CustomWidgetBarangState();
+}
+
+class _CustomWidgetBarangState extends State<CustomWidgetBarang> {
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,7 +56,7 @@ class CustomWidgetBarang extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Nama Barang",
+                        widget.namaBarang,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22,
@@ -53,7 +66,7 @@ class CustomWidgetBarang extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        "Harga",
+                        "Harga Satuan Rp. ${widget.hargaBarang}",
                         style: TextStyle(
                           fontSize: 18,
                         ),
@@ -62,7 +75,7 @@ class CustomWidgetBarang extends StatelessWidget {
                         height: 3,
                       ),
                       Text(
-                        "Jumlah",
+                        "Jumlah Yang dibeli ${widget.jumlahBarang}",
                         style: TextStyle(
                           fontSize: 18,
                         ),
