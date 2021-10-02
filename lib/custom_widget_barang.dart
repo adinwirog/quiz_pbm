@@ -4,10 +4,12 @@ class Barang {
   String namaBarang;
   int hargaBarang;
   int jumlahBarang;
+  String gambar;
   Barang(
       {required this.namaBarang,
       required this.hargaBarang,
-      required this.jumlahBarang});
+      required this.jumlahBarang,
+      required this.gambar});
 }
 
 class CustomWidgetBarang extends StatefulWidget {
@@ -43,14 +45,9 @@ class _CustomWidgetBarangState extends State<CustomWidgetBarang> {
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 125,
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
-                  ),
+                child: Image.asset(
+                  'img/${widget.barang.gambar}',
+                  height: 130,
                 ),
               ),
             ),
@@ -93,12 +90,14 @@ class _CustomWidgetBarangState extends State<CustomWidgetBarang> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/detailbarang', arguments: {
-                            'index': widget.id,
-                            'namaBarang': widget.barang.namaBarang,
-                            'harga': widget.barang.hargaBarang,
-                            'jumlah': widget.barang.jumlahBarang,
-                          } );
+                          Navigator.pushNamed(context, '/detailbarang',
+                              arguments: {
+                                'index': widget.id,
+                                'namaBarang': widget.barang.namaBarang,
+                                'harga': widget.barang.hargaBarang,
+                                'jumlah': widget.barang.jumlahBarang,
+                                'gambar': widget.barang.gambar,
+                              });
                         },
                         child: Text("Lihat Detail"),
                         style: ButtonStyle(

@@ -30,9 +30,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Barang> barang = [
-    Barang(namaBarang: "Poci", hargaBarang: 11000, jumlahBarang: 2),
-    Barang(namaBarang: "Gelas", hargaBarang: 3000, jumlahBarang: 2),
-    Barang(namaBarang: "Piring", hargaBarang: 5000, jumlahBarang: 2),
+    Barang(namaBarang: "Poci", hargaBarang: 11000, jumlahBarang: 2, gambar: 'poci.jpg'),
+    Barang(namaBarang: "Gelas", hargaBarang: 3000, jumlahBarang: 2, gambar: 'gelas.jpg'),
+    Barang(namaBarang: "Piring", hargaBarang: 5000, jumlahBarang: 2, gambar: 'piring.jpg'),
   ];
   int total = 0;
 

@@ -32,11 +32,11 @@ class _DetailBarangState extends State<DetailBarang> {
         child: Center(
           child: Column(
             children: [
-              Container(
-                height: 400,
-                width: 550,
-                decoration: BoxDecoration(color: Colors.blue),
-              ),
+              Image.asset(
+                  'img/${data["gambar"]}',
+                  height: 400,
+                  width: 550,
+                ),
               SizedBox(
                 height: 25,
               ),
