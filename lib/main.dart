@@ -12,7 +12,11 @@ class Root extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: Home(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Home(),
+        '/detailbarang': (context) => DetailBarang(),
+      },
     );
   }
 }
@@ -32,7 +36,9 @@ class _HomeState extends State<Home> {
   ];
   int total = 0;
 
-  void setTotal (List<Barang> barang) {
+  dynamic data;
+
+  void setTotal(List<Barang> barang) {
     var initTotal = 0;
     for (var i = 0; i < barang.length; i++) {
       initTotal += (barang[i].hargaBarang * barang[i].jumlahBarang);
@@ -42,6 +48,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context)?.settings.arguments;
+    if ( data != null) {
+      barang[data['index']].jumlahBarang = data['jumlah'] ;
+    }
     setTotal(barang);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -57,7 +67,7 @@ class _HomeState extends State<Home> {
       body: ListView.builder(
         itemCount: barang.length,
         itemBuilder: (BuildContext context, int index) {
-          return CustomWidgetBarang(barang: barang[index]);
+          return CustomWidgetBarang(barang: barang[index], id: index);
         },
       ),
       bottomNavigationBar: BottomAppBar(

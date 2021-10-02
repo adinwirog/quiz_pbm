@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_pbm/custom_widget_barang.dart';
 
 class DetailBarang extends StatefulWidget {
   const DetailBarang({Key? key}) : super(key: key);
@@ -8,8 +9,16 @@ class DetailBarang extends StatefulWidget {
 }
 
 class _DetailBarangState extends State<DetailBarang> {
+  int id = 0;
+  dynamic data;
+  int barangCounter = 0;
+
+
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context)?.settings.arguments;
+    id = data['index'];
+    // barangCounter = data['jumlah'];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
@@ -32,7 +41,7 @@ class _DetailBarangState extends State<DetailBarang> {
                 height: 25,
               ),
               Text(
-                "Nama Barang X",
+                data['namaBarang'],
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
@@ -42,9 +51,9 @@ class _DetailBarangState extends State<DetailBarang> {
                 height: 25,
               ),
               Text(
-                "Harga Satuan Barang X",
+                "Harga Per satuan Rp. ${data["harga"]}",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 20,
                 ),
               ),
               SizedBox(
@@ -64,7 +73,13 @@ class _DetailBarangState extends State<DetailBarang> {
                 children: [
                   SizedBox(),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        if (!(barangCounter <= 0)) {
+                          barangCounter--;
+                        }
+                      });
+                    },
                     child: Text(
                       "-",
                       style: TextStyle(fontSize: 35),
@@ -74,14 +89,18 @@ class _DetailBarangState extends State<DetailBarang> {
                     ),
                   ),
                   Text(
-                    "Jumlah barang = null",
+                    "Jumlah barang = $barangCounter",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        barangCounter++;
+                      });
+                    },
                     child: Text(
                       "+",
                       style: TextStyle(fontSize: 35),
@@ -97,7 +116,12 @@ class _DetailBarangState extends State<DetailBarang> {
                 height: 25,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/', arguments: {
+                    'index' : id,
+                    'jumlah' : barangCounter,
+                  });
+                },
                 child: Text(
                   "Konfirmasi",
                   style: TextStyle(fontSize:25),

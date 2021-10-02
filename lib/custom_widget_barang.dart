@@ -11,10 +11,12 @@ class Barang {
 }
 
 class CustomWidgetBarang extends StatefulWidget {
+  int id;
   Barang barang;
 
   CustomWidgetBarang({
     required this.barang,
+    required this.id,
   });
 
   @override
@@ -90,7 +92,14 @@ class _CustomWidgetBarangState extends State<CustomWidgetBarang> {
                         height: 5,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/detailbarang', arguments: {
+                            'index': widget.id,
+                            'namaBarang': widget.barang.namaBarang,
+                            'harga': widget.barang.hargaBarang,
+                            'jumlah': widget.barang.jumlahBarang,
+                          } );
+                        },
                         child: Text("Lihat Detail"),
                         style: ButtonStyle(
                           backgroundColor:
