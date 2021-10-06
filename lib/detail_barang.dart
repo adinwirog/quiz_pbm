@@ -11,13 +11,20 @@ class DetailBarang extends StatefulWidget {
 class _DetailBarangState extends State<DetailBarang> {
   int id = 0;
   dynamic data;
-  int barangCounter = 0;
+  int barangCounter = -1;
+
+  void initCounter() {
+    barangCounter = data['jumlah'];
+  }
 
 
   @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context)?.settings.arguments;
     id = data['index'];
+    if (barangCounter < 0) {
+      initCounter();
+    }
     // barangCounter = data['jumlah'];
     return Scaffold(
       appBar: AppBar(
